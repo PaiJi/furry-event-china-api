@@ -2,6 +2,7 @@ name = "furry-event-china-api"
 compatibility_date = "2024-04-29"
 main = "src/index.ts"
 minify = true
+account_id = "6d1c7e2b0f8263e9e82e055d983bbf32"
 
 # [vars]
 # MY_VAR = "my-variable"
