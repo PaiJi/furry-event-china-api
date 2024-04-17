@@ -46,9 +46,12 @@ event.get("/recent", async (c) => {
       globalUrl: `https://www.furryeventchina.com/${result?.organization?.slug}/${result?.slug}`,
       cnUrl: `https://www.furrycons.cn/${result?.organization?.slug}/${result?.slug}`,
     };
-    return c.json(finalResult);
+    return c.json({
+      total: 1,
+      data: [finalResult],
+    });
   } catch (error) {
-    return c.json({ info: "No event available" }, 404);
+    return c.json({ info: "No event available", total: 0, data: [] }, 404);
   }
 });
 
