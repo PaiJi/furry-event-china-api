@@ -2,6 +2,7 @@ import { Hono } from "hono";
 import Omit from "lodash/omit";
 import xataInstance from "@/database/helper";
 import imageURL from "@/utils/image";
+import { EventStatus } from "@/types/event";
 
 const event = new Hono();
 
@@ -17,7 +18,11 @@ event.get("/recent", async (c) => {
           $ge: new Date(),
           $le: new Date(new Date().setDate(new Date().getDate() + 30)),
         },
+        $not: {
+          status: EventStatus.EventCancelled,
+        },
       })
+
       .sort("startDate", "asc")
       .select([
         "name",
